@@ -33,7 +33,13 @@ namespace Fundbae.Services.Repositories
             }
         public async Task<Response<dynamic>> AddAsync(AccountCreationDTO account)
         {
+            var checkAccounts = _context.Accounts.Where(x => x.CustomerId == account.CustomerId).Count();
+            if (checkAccounts > 5)
+            {
+                return Response<dynamic>.Send(false, "You can only create a maximum of 5 accounts");
+            }
             var newAccount = Account.CreateAccount(account);
+            var checkNumberOfAccounts = 
             await _context.Accounts.AddAsync(
                 new Account
                 {
@@ -44,6 +50,44 @@ namespace Fundbae.Services.Repositories
                 );
             await _context.SaveChangesAsync();
             return Response<dynamic>.Send(true, "Account Created Successfully");
+        }
+
+       public async Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount)
+        {
+            var findAccount =  _context.Accounts.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
+            if (findAccount != null)
+            {
+                findAccount.CreditAccount(amount);
+                await UpdateAccountBalance(findAccount);
+                return Response<dynamic>.Send(true, "Account credited Successfully");
+            }
+            return Response<dynamic>.Send(false, "Oops something went wrong");
+        }
+
+        public async Task<Response<dynamic>> DebitAccount(int accountNumber, decimal amount)
+        {
+            var findAccount = _context.Accounts.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
+            if (findAccount != null)
+            {
+                findAccount.DebitAccount(amount);
+                await UpdateAccountBalance(findAccount);
+                return Response<dynamic>.Send(true, "Account debited Successfully");
+            }
+            return Response<dynamic>.Send(false, "Oops something went wrong");
+        }
+
+
+
+        public async Task<Response<dynamic>> UpdateAccountBalance(Account account)
+        {
+            var res =  _context.Update(account);
+            if (res != null)
+            {
+                await  _context.SaveChangesAsync();
+                return Response<dynamic>.Send(true, "Credited Account Balance Successfully");
+            }
+            return Response<dynamic>.Send(false, "Oops something went wrong");
+
         }
     }
 }

@@ -12,5 +12,7 @@ namespace Fundbae.Services.Contracts
     public interface IAccountService
     {
         Task<Response<dynamic>> AddAsync(AccountCreationDTO account);
+        Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount);
+        Task<Response<dynamic>> DebitAccount(int accountNumber, decimal amount);
     }
 }

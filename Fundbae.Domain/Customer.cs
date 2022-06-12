@@ -18,7 +18,7 @@ namespace Fundbae.Domain
         
         [Key]
         [Required]
-        public long CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         [Required]
         public long UserId { get; set; }

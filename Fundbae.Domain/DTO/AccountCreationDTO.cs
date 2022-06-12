@@ -12,5 +12,6 @@ namespace Fundbae.Domain.DTO
         public string AccountName { get; set; }
         public int AccountNumber { get; set; }
         public AccountType AccountType { get; set; }
+        public Guid CustomerId { get; set; }
     }
 }

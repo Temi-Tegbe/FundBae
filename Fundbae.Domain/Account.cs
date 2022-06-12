@@ -26,6 +26,7 @@ namespace Fundbae.Domain
         public Customer Customer { get; set; }
         public DateTime DateRegistered { get; set; }
         public DateTime LastModified { get; set; }
+        public Guid CustomerId { get; set; }
 
 
         public static Account CreateAccount(AccountCreationDTO account)
@@ -50,6 +51,16 @@ namespace Fundbae.Domain
 
             }
             return number;
+        }
+
+        public void CreditAccount(decimal amount)
+        {
+            AccountBalance += amount;
+        }
+
+        public void DebitAccount(decimal amount)
+        {
+            AccountBalance -= amount;
         }
 
     }
