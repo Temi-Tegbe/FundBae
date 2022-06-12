@@ -52,7 +52,13 @@ namespace Fundbae.Services.Repositories
             return Response<dynamic>.Send(true, "Account Created Successfully");
         }
 
-       public async Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount)
+        public async Task<PagedQueryResult<Account>> GetAllAccounts(PagedQueryRequest request)
+        {
+            var allAccounts = _context.Accounts;
+            return allAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
+
+        public async Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount)
         {
             var findAccount =  _context.Accounts.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
             if (findAccount != null)
