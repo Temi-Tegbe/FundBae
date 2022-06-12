@@ -38,7 +38,7 @@ namespace Fundbae.Services.Repositories
         }
 
 
-        public async Task<Response<dynamic>> AddAsync(CustomerRegistrationDTO customer, ApplicationUser userInfo)
+        public async Task<Response<dynamic>> AddAsync(CustomerRegistrationDTO customer)
         {
             var existing = await GetCustomerDetails(customer.EmailAddress);
             if (existing != null)
@@ -55,7 +55,7 @@ namespace Fundbae.Services.Repositories
                     PhoneNumber = customer.PhoneNumber,
                     FirstName = customer.FirstName,
                     LastName = customer.LastName,
-                    User = userInfo
+                    
                     
 
 

@@ -11,7 +11,7 @@ namespace Fundbae.Services.Contracts
 {
     public interface ICustomerService
     {
-        Task<Response<dynamic>> AddAsync(CustomerRegistrationDTO customer, ApplicationUser userInfo);
+        Task<Response<dynamic>> AddAsync(CustomerRegistrationDTO customer);
         //Task<Response<dynamic>> UpdateAsync(CustomerRegistrationDTO customer, ApplicationUser userInfo);
         Task<Response<dynamic>> Login(CustomerLoginDTO login);
          Task<Customer> GetCustomerDetails(string login);
