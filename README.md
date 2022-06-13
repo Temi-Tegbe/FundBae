@@ -29,6 +29,11 @@ Customers/GetAllCustomers
 PageSize
 PageNumber
 
+Customers/GetAllCustomersWithZeroBalance
+
+PageSize
+PageNumber
+
 
 Account/CreateAccount
 
@@ -39,10 +44,31 @@ AccountType
 CustomerId
 
 
+Account/CreditAccount
+
+AccountNumber
+Amount 
+
+Account/DebitAccount
+
+AccountNumber
+Amount
+
+
+
 Account/GetAllAccounts
 
 PageSize
 PageNumber
+
+Account/GetAllAccountsWithNoCustomer
+PageSize
+PageNumber
+
+
+Interest/GetInterest
+AccountNumber
+
 
 
 As of writing this readme, some features like getting all acc
