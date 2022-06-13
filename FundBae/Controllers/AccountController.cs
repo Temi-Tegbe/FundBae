@@ -65,5 +65,8 @@ namespace FundBae.Controllers
             var zeroBalance = await _accountService.GetAllAccountsWithNoCustomer(request);
             return Ok(zeroBalance);
         }
+
+      
+
     }
 }
