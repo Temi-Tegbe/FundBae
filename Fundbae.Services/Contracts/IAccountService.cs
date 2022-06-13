@@ -20,5 +20,6 @@ namespace Fundbae.Services.Contracts
         Task<PagedQueryResult<Account>> GetAllVivaAccounts(PagedQueryRequest request);
         Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount);
         Task<Response<dynamic>> DebitAccount(int accountNumber, decimal amount);
+        Task<PagedQueryResult<Account>> GetAllAccountsWithNoCustomer(PagedQueryRequest request);
     }
 }

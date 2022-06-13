@@ -111,6 +111,14 @@ namespace Fundbae.Services.Repositories
             return allCustomers.ToPagedResult(request.PageNumber, request.PageSize);
         }
 
+       
+
+
+        public async Task<PagedQueryResult<Account>> GetAllCustomersAccounts(PagedQueryRequest request, Guid customerId)
+        {
+            var customerAccounts =  _context.Accounts.Where(x => x.CustomerId == customerId);
+            return customerAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
         public async Task<PagedQueryResult<Customer>> GetAllCustomersWithZeroBalance(PagedQueryRequest request)
         {
             var zeroBalance =  _context.Customers.Where(x => x.Accounts.AccountBalance == 0);

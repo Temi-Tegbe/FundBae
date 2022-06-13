@@ -57,5 +57,13 @@ namespace FundBae.Controllers
             var creditAccount = await _accountService.DebitAccount(accountNumber, amount);
                 return Ok(creditAccount);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAccountsWithNoCustomer(PagedQueryRequest request)
+        {
+            var zeroBalance = await _accountService.GetAllAccountsWithNoCustomer(request);
+            return Ok(zeroBalance);
+        }
     }
 }

@@ -123,6 +123,11 @@ namespace Fundbae.Services.Repositories
         }
 
 
+        public async Task<PagedQueryResult<Account>> GetAllAccountsWithNoCustomer(PagedQueryRequest request)
+        {
+            var noCustomers = _context.Accounts.Where(x => x.CustomerId == null);
+            return noCustomers.ToPagedResult(request.PageNumber, request.PageSize);
+        }
 
         public async Task<Response<dynamic>> UpdateAccountBalance(Account account)
         {
