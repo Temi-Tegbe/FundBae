@@ -44,5 +44,18 @@ namespace FundBae.Controllers
             return Ok(allAccounts);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreditAccount(int accountNumber, decimal amount)
+        {
+            var creditAccount = await _accountService.CreditAccount(accountNumber, amount);
+                return Ok(creditAccount);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DebitAccount(int accountNumber, decimal amount)
+        {
+            var creditAccount = await _accountService.DebitAccount(accountNumber, amount);
+                return Ok(creditAccount);
+        }
     }
 }

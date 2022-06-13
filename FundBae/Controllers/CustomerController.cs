@@ -56,5 +56,16 @@ namespace FundBae.Controllers
             var allCustomers = await _customerService.GetAllCustomers(request);
             return Ok(allCustomers);
         }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllCustomersWithZeroBalance(PagedQueryRequest request)
+        {
+            var zeroBalance = await _customerService.GetAllCustomersWithZeroBalance(request);
+            return Ok(zeroBalance);
+        }
+
+
     }
 }

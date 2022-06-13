@@ -13,6 +13,11 @@ namespace Fundbae.Services.Contracts
     {
         Task<Response<dynamic>> AddAsync(AccountCreationDTO account);
         Task<PagedQueryResult<Account>> GetAllAccounts(PagedQueryRequest request);
+        Task<PagedQueryResult<Account>> GetAllFlexAccounts(PagedQueryRequest request);
+        Task<PagedQueryResult<Account>> GetAllSupaAccounts(PagedQueryRequest request);
+        Task<PagedQueryResult<Account>> GetAllPiggyAccounts(PagedQueryRequest request);
+        Task<PagedQueryResult<Account>> GetAllDeluxeAccounts(PagedQueryRequest request);
+        Task<PagedQueryResult<Account>> GetAllVivaAccounts(PagedQueryRequest request);
         Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount);
         Task<Response<dynamic>> DebitAccount(int accountNumber, decimal amount);
     }

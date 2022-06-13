@@ -111,6 +111,11 @@ namespace Fundbae.Services.Repositories
             return allCustomers.ToPagedResult(request.PageNumber, request.PageSize);
         }
 
+        public async Task<PagedQueryResult<Customer>> GetAllCustomersWithZeroBalance(PagedQueryRequest request)
+        {
+            var zeroBalance =  _context.Customers.Where(x => x.Accounts.AccountBalance == 0);
+            return zeroBalance.ToPagedResult(request.PageNumber,request.PageSize);
+        }
         public static int GenerateAccountNumber()
         {
             Random rnd = new Random();

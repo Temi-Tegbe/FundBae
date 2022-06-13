@@ -52,14 +52,50 @@ namespace Fundbae.Services.Repositories
             return Response<dynamic>.Send(true, "Account Created Successfully");
         }
 
+
+
         public async Task<PagedQueryResult<Account>> GetAllAccounts(PagedQueryRequest request)
         {
             var allAccounts = _context.Accounts;
             return allAccounts.ToPagedResult(request.PageNumber, request.PageSize);
         }
 
+        public async Task<PagedQueryResult<Account>> GetAllFlexAccounts(PagedQueryRequest request)
+        {
+            var flexAccounts = _context.Accounts.Where(x => x.AccountType == AccountType.Flex);
+            return flexAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
+
+        public async Task<PagedQueryResult<Account>> GetAllSupaAccounts(PagedQueryRequest request)
+        {
+            var supaAccounts = _context.Accounts.Where(x => x.AccountType == AccountType.Supa);
+            return supaAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
+
+        public async Task<PagedQueryResult<Account>> GetAllPiggyAccounts(PagedQueryRequest request)
+        {
+            var piggyAccounts = _context.Accounts.Where(x => x.AccountType == AccountType.Piggy);
+            return piggyAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
+        public async Task<PagedQueryResult<Account>> GetAllDeluxeAccounts(PagedQueryRequest request)
+        {
+            var supaAccounts = _context.Accounts.Where(x => x.AccountType == AccountType.Deluxe);
+            return supaAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
+
+        public async Task<PagedQueryResult<Account>> GetAllVivaAccounts(PagedQueryRequest request)
+        {
+            var vivaAccounts = _context.Accounts.Where(x => x.AccountType == AccountType.Viva);
+            return vivaAccounts.ToPagedResult(request.PageNumber, request.PageSize);
+        }
+
+
         public async Task<Response<dynamic>> CreditAccount(int accountNumber, decimal amount)
         {
+            if (amount <= 0)
+            {
+                return Response<dynamic>.Send(false, "amount cannot be less than or equal to zero", System.Net.HttpStatusCode.BadRequest);
+            }
             var findAccount =  _context.Accounts.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
             if (findAccount != null)
             {
@@ -72,6 +108,10 @@ namespace Fundbae.Services.Repositories
 
         public async Task<Response<dynamic>> DebitAccount(int accountNumber, decimal amount)
         {
+            if (amount <= 0)
+            {
+                return Response<dynamic>.Send(false, "amount cannot be less than or equal to zero", System.Net.HttpStatusCode.BadRequest);
+            }
             var findAccount = _context.Accounts.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
             if (findAccount != null)
             {

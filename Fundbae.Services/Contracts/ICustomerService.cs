@@ -16,6 +16,7 @@ namespace Fundbae.Services.Contracts
         Task<Response<dynamic>> Login(CustomerLoginDTO login);
          Task<Customer> GetCustomerDetails(string login);
         Task<PagedQueryResult<Customer>> GetAllCustomers(PagedQueryRequest request);
+        Task<PagedQueryResult<Customer>> GetAllCustomersWithZeroBalance(PagedQueryRequest request);
 
     }
 }
