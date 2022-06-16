@@ -69,6 +69,3 @@ PageNumber
 Interest/GetInterest
 AccountNumber
 
-
-
-As of writing this readme, some features like getting all acc
